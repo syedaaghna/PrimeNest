@@ -1,0 +1,7 @@
+@import "tailwindcss";
+/* index.css */
+.carousel .legend {
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
