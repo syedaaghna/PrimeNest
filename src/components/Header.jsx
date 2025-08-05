@@ -26,7 +26,7 @@ const Header = () => {
           {navItems.map((item) => (
             <a
               key={item}
-              href="#"
+              href=""
               className="hover:text-blue-600 transition-colors duration-200 text-sm font-medium"
             >
               {item}

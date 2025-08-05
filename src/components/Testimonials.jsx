@@ -1,6 +1,6 @@
-
 import React from "react";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
+import Slider from "react-slick";
 import profileImg1 from "../assets/profile_img_1.png";
 import profileImg2 from "../assets/profile_img_2.png";
 import profileImg3 from "../assets/profile_img_3.png";
@@ -23,28 +23,38 @@ const testimonials = [
   },
 ];
 
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-};
-
 const Testimonials = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-white to-gray-50"> {/* Enhanced background gradient */}
+    <section className="py-16 px-4 bg-gradient-to-br from-white to-gray-50">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold text-center text-gray-800 mb-8 md:mb-12" // Enhanced heading style
+          className="text-4xl font-bold text-center text-gray-800 mb-8 md:mb-12"
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -52,38 +62,34 @@ const Testimonials = () => {
         >
           What Our Clients Say
         </motion.h2>
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto" // Increased gap
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              className="border border-gray-200 p-6 rounded-lg shadow-xl bg-gradient-to-br from-blue-50 to-white
-                       transform transition-all duration-300 ease-in-out
-                       hover:scale-103 hover:shadow-2xl hover:border-blue-300 cursor-pointer" 
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05)" }} 
-            >
-              <div className="flex items-center mb-4">
-                <img
-                  src={t.avatar}
-                  alt={`${t.name}'s avatar`}
-                  className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-blue-500 shadow-md"  
-                />
-                <div>
-                  <p className="font-semibold text-xl text-gray-800">{t.name}</p> 
+
+        <div className="max-w-6xl mx-auto">
+          <Slider {...settings}>
+            {testimonials.map((t, i) => (
+              <div key={i} className="px-2">
+                <div
+                  className="border border-gray-200 p-6 rounded-lg shadow-xl bg-gradient-to-br from-blue-50 to-white
+                  transform transition-all duration-300 ease-in-out
+                  hover:scale-103 hover:shadow-2xl hover:border-blue-300 cursor-pointer h-full"
+                >
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={t.avatar}
+                      alt={`${t.name}'s avatar`}
+                      className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-blue-500 shadow-md"
+                    />
+                    <div>
+                      <p className="font-semibold text-xl text-gray-800">{t.name}</p>
+                    </div>
+                  </div>
+                  <p className="italic text-gray-700 leading-relaxed text-base">
+                    "{t.feedback}"
+                  </p>
                 </div>
               </div>
-              <p className="italic text-gray-700 leading-relaxed mb-4 text-base">
-                "{t.feedback}"
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );

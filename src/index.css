@@ -1,5 +1,9 @@
+/* Import Tailwind CSS */
 @import "tailwindcss";
-/* index.css */
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* Your custom styles */
 .carousel .legend {
   background: rgba(0, 0, 0, 0.5);
   font-size: 1rem;

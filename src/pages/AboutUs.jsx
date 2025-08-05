@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Slider from "react-slick"; // <-- Import Slider
 
 import teamMember1 from "../assets/profile_img_1.png";
 import teamMember2 from "../assets/profile_img_2.png";
@@ -7,7 +8,7 @@ import bahriaLogo from "../assets/Bahria_Town_Logo.png";
 import parkviewLogo from "../assets/parkview.jpg";
 import capitalLogo from "../assets/capital_logo.png";
 import blueworldLogo from "../assets/blue-world-city-logo.webp";
-import WhyChooseUs from "../components/WhyChooseUs"; //
+import WhyChooseUs from "../components/WhyChooseUs";
 
 const team = [
   {
@@ -20,6 +21,17 @@ const team = [
     role: "Senior Agent",
     image: teamMember2,
   },
+  // Added more team members for the carousel to be visible
+  {
+    name: "John Doe",
+    role: "Marketing Head",
+    image: teamMember1,
+  },
+  {
+    name: "Jane Smith",
+    role: "Property Analyst",
+    image: teamMember2,
+  },
 ];
 
 const partners = [
@@ -27,6 +39,9 @@ const partners = [
   { name: "Park View City", logo: parkviewLogo },
   { name: "Capital Smart City", logo: capitalLogo },
   { name: "Blue World City", logo: blueworldLogo },
+  // Added more partners for the carousel to be visible
+  { name: "Bahria Town 2", logo: bahriaLogo },
+  { name: "Park View City 2", logo: parkviewLogo },
 ];
 
 const achievements = [
@@ -66,10 +81,60 @@ const cardVariants = {
 };
 
 const AboutUs = () => {
+  // Carousel settings for Team members
+  const teamSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Show 3 team members at once
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
+  // Carousel settings for Partners
+  const partnersSettings = {
+    dots: false, // No dots for partners
+    arrows: false, // No arrows for a cleaner look
+    infinite: true,
+    speed: 1500, // Slower slide transition
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear", // Smooth continuous scroll
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
+
   return (
     <section className="bg-gray-50 py-14 px-6 md:px-16" id="about-us-section">
-      {" "}
-      {/* Added id for navigation */}
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold text-gray-800 mb-4"
@@ -92,10 +157,10 @@ const AboutUs = () => {
           bring you transparent, secure, and client-centric property solutions.
         </motion.p>
 
-        {/* Mission & Vision */}
+        {/* Mission & Vision - Fixed Height */}
         <div className="grid md:grid-cols-2 gap-10 mb-12">
           <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg"
+            className="bg-white p-6 rounded-xl shadow-lg min-h-[220px]" // <-- Added min-h for consistent height
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -112,7 +177,7 @@ const AboutUs = () => {
           </motion.div>
 
           <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg"
+            className="bg-white p-6 rounded-xl shadow-lg min-h-[220px]" // <-- Added min-h for consistent height
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -129,7 +194,7 @@ const AboutUs = () => {
           </motion.div>
         </div>
 
-        {/* Team */}
+        {/* Team Carousel Section */}
         <motion.h3
           className="text-3xl font-bold text-gray-800 mb-6"
           initial="hidden"
@@ -139,29 +204,33 @@ const AboutUs = () => {
         >
           Meet Our Team
         </motion.h3>
-        <div className="flex flex-wrap justify-center gap-8 mb-12">
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              className="w-64 text-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={cardVariants}
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="rounded-full w-32 h-32 mx-auto object-cover border-4 border-blue-500"
-              />
-              <h4 className="text-xl font-semibold mt-4">{member.name}</h4>
-              <p className="text-blue-600">{member.role}</p>
-            </motion.div>
-          ))}
+        <div className="mx-auto max-w-4xl">
+          <Slider {...teamSettings}>
+            {team.map((member, index) => (
+              <div key={index} className="px-2">
+                <motion.div
+                  className="w-full text-center"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  variants={cardVariants}
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="rounded-full w-32 h-32 mx-auto object-cover border-4 border-blue-500"
+                  />
+                  <h4 className="text-xl font-semibold mt-4">{member.name}</h4>
+                  <p className="text-blue-600">{member.role}</p>
+                </motion.div>
+              </div>
+            ))}
+          </Slider>
         </div>
 
+        {/* Partners Carousel Section */}
         <motion.h3
-          className="text-3xl font-bold text-gray-800 mb-6"
+          className="text-3xl font-bold text-gray-800 mb-6 mt-14"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
@@ -169,25 +238,26 @@ const AboutUs = () => {
         >
           Our Partners
         </motion.h3>
-        <div className="overflow-x-auto whitespace-nowrap pb-6 scrollbar-hide">
-          <div className="flex space-x-10 justify-center items-center">
+        <div className="mx-auto max-w-4xl">
+          <Slider {...partnersSettings}>
             {partners.map((partner, index) => (
-              <motion.div
-                key={index}
-                className="min-w-[150px]"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="h-20 mx-auto grayscale hover:grayscale-0 transition duration-300"
-                />
-              </motion.div>
+              <div key={index} className="px-2">
+                <motion.div
+                  className="min-w-[150px] flex justify-center items-center h-28"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="h-20 max-w-full mx-auto grayscale hover:grayscale-0 transition duration-300 object-contain"
+                  />
+                </motion.div>
+              </div>
             ))}
-          </div>
+          </Slider>
         </div>
 
         {/* Achievements */}
@@ -215,8 +285,6 @@ const AboutUs = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Commitment */}
         <motion.div
           className="mt-14 bg-blue-100 p-6 rounded-xl shadow-inner"
           initial="hidden"
@@ -233,7 +301,7 @@ const AboutUs = () => {
           </p>
         </motion.div>
       </div>
-      <WhyChooseUs /> {/* */}
+      <WhyChooseUs />
     </section>
   );
 };
