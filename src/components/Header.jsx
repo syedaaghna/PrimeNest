@@ -1,28 +1,32 @@
+// src/components/Header.jsx
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link component
 import logo1 from "../assets/logo1.avif";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#hero-section" },
-    { name: "About Us", href: "#about-us-section" },
-    { name: "Properties", href: "#featured-properties" },
-    { name: "Services", href: "#services-section" },
-    { name: "Blog", href: "#blog-section" },
-    { name: "Contact", href: "#contact-section" },
+    { name: "Home", to: "/" }, // Use 'to' instead of 'href' for React Router
+    { name: "About Us", to: "/about" },
+    { name: "Properties", to: "/properties" },
+    { name: "Services", to: "#services-section" },
+    { name: "Blog", to: "#blog-section" },
+    { name: "Contact", to: "#contact-section" },
   ];
 
-  // Function to handle smooth scrolling
-  const handleSmoothScroll = (e, href) => {
-    e.preventDefault();
-    const targetId = href.substring(1); // Remove the '#'
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+  // Modified function to handle both routing and smooth scrolling for other sections
+  const handleNavigation = (e, to) => {
+    if (to.startsWith("#")) {
+      e.preventDefault();
+      const targetId = to.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
     }
     setMenuOpen(false); // Close the mobile menu after clicking
   };
@@ -38,14 +42,14 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 text-gray-200">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
-              onClick={(e) => handleSmoothScroll(e, item.href)}
+              to={item.to}
+              onClick={(e) => handleNavigation(e, item.to)}
               className="hover:text-blue-500 transition-colors duration-200 text-sm font-medium"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -77,14 +81,14 @@ const Header = () => {
         <div className="lg:hidden w-full bg-gray-800 shadow-inner border-t border-gray-700 px-4 py-4 space-y-4">
           <div className="flex flex-col space-y-3">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
-                onClick={(e) => handleSmoothScroll(e, item.href)}
+                to={item.to}
+                onClick={(e) => handleNavigation(e, item.to)}
                 className="text-gray-200 text-sm font-medium hover:text-blue-500"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
