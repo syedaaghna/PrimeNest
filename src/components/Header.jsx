@@ -1,13 +1,13 @@
 // src/components/Header.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link component
+import { Link } from "react-router-dom"; 
 import logo1 from "../assets/logo1.avif";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", to: "/" }, // Use 'to' instead of 'href' for React Router
+    { name: "Home", to: "/" }, 
     { name: "About Us", to: "/about" },
     { name: "Properties", to: "/properties" },
     { name: "Services", to: "#services-section" },
@@ -15,7 +15,7 @@ const Header = () => {
     { name: "Contact", to: "#contact-section" },
   ];
 
-  // Modified function to handle both routing and smooth scrolling for other sections
+
   const handleNavigation = (e, to) => {
     if (to.startsWith("#")) {
       e.preventDefault();
@@ -28,8 +28,13 @@ const Header = () => {
         });
       }
     }
-    setMenuOpen(false); // Close the mobile menu after clicking
+    setMenuOpen(false); 
   };
+  const handleLoginClick = () => {
+  
+  window.location.href = "/login"; 
+};
+
 
   return (
     <header className="bg-gray-900 shadow-md absolute top-0 z-50 w-full">
@@ -59,7 +64,7 @@ const Header = () => {
             placeholder="Search..."
             className="border border-gray-600 bg-gray-800 text-white rounded-full px-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded-full hover:bg-blue-700">
+          <button className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded-full hover:bg-blue-700" onClick={handleLoginClick}>
             Login
           </button>
           <button className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded-full hover:bg-blue-700">

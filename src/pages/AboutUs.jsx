@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Slider from "react-slick"; 
+import Slider from "react-slick";
 
 import teamMember1 from "../assets/profile_img_1.png";
 import teamMember2 from "../assets/profile_img_2.png";
@@ -21,7 +21,7 @@ const team = [
     role: "Senior Agent",
     image: teamMember2,
   },
- 
+
   {
     name: "John Doe",
     role: "Marketing Head",
@@ -85,7 +85,7 @@ const AboutUs = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, 
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -107,15 +107,15 @@ const AboutUs = () => {
 
   // Carousel settings for Partners
   const partnersSettings = {
-    dots: false, 
+    dots: false,
     arrows: false,
     infinite: true,
-    speed: 1500, 
+    speed: 1500,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    cssEase: "linear", 
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
@@ -133,7 +133,10 @@ const AboutUs = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-14 px-6 md:px-16" id="about-us-section">
+    <section
+      className="bg-gray-50 pt-20 pb-14 px-6 md:px-16"
+      id="about-us-section"
+    >
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold text-gray-800 mb-4"
@@ -159,7 +162,7 @@ const AboutUs = () => {
         {/* Mission & Vision - Fixed Height */}
         <div className="grid md:grid-cols-2 gap-10 mb-12">
           <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg min-h-[220px]" 
+            className="bg-white p-6 rounded-xl shadow-lg min-h-[220px]"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -176,7 +179,7 @@ const AboutUs = () => {
           </motion.div>
 
           <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg min-h-[220px]" 
+            className="bg-white p-6 rounded-xl shadow-lg min-h-[220px]"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
