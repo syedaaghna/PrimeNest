@@ -1,12 +1,37 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function PopOutSocialButtons() {
   const socialLinks = [
-    { icon: faFacebookF, url: "https://facebook.com", bg: "bg-blue-600", label: "Facebook" },
-    { icon: faTwitter, url: "https://twitter.com", bg: "bg-sky-400", label: "Twitter" },
-    { icon: faInstagram, url: "https://instagram.com", bg: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600", label: "Instagram" },
-    { icon: faLinkedinIn, url: "https://linkedin.com", bg: "bg-blue-700", label: "LinkedIn" },
+    {
+      icon: faFacebookF,
+      url: "https://facebook.com",
+      bg: "bg-blue-600",
+      label: "Facebook",
+    },
+    {
+      icon: faTwitter,
+      url: "https://twitter.com",
+      bg: "bg-sky-400",
+      label: "Twitter",
+    },
+    {
+      icon: faInstagram,
+      url: "https://instagram.com",
+      bg: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600",
+      label: "Instagram",
+    },
+    {
+      icon: faWhatsapp,
+      url: "https://web.whatsapp.com/",
+      bg: "bg-green-700",
+      label: "LinkedIn",
+    },
   ];
 
   return (

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo1 from "../assets/logo1.avif";
 import { FaChevronDown } from "react-icons/fa";
-import { services } from "../data/servicesData"; // ✅ Import shared services data
+import { services } from "../data/servicesData"; 
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

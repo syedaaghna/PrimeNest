@@ -1,16 +1,14 @@
-
 import React from "react";
 import FeaturedCarousel from "../ui/FeaturedCarousel";
-import Hero from "../components/Hero"; 
-import CityHighlights from "../components/CityHighlights"; 
-import Testimonials from "../components/Testimonials"; 
+import Hero from "../components/Hero";
+import CityHighlights from "../components/CityHighlights";
+import Testimonials from "../components/Testimonials";
 import FloatingSocialButtons from "../components/SocialMediaButtons";
-
 
 const Home = () => {
   return (
     <>
-     <FloatingSocialButtons /> 
+      <FloatingSocialButtons />
       <Hero />
       <FeaturedCarousel />
       <CityHighlights />
