@@ -30,7 +30,7 @@ export default function PopOutSocialButtons() {
       icon: faWhatsapp,
       url: "https://web.whatsapp.com/",
       bg: "bg-green-700",
-      label: "LinkedIn",
+      label: "Whatsapp",
     },
   ];
 
